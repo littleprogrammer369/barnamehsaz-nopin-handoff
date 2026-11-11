@@ -1,0 +1,47 @@
+x-postgres-common: &postgres
+  image: postgres:16-alpine
+  restart: unless-stopped
+  environment:
+    POSTGRES_USER: ${DB_USER:-barnamehsaz}
+    POSTGRES_PASSWORD: ${DB_PASSWORD:-change_me_local}
+    POSTGRES_DB: ${DB_NAME:-barnamehsaz_novin_dev}
+  volumes:
+    - postgres_data:/var/lib/postgresql/data
+    - ./docker/init:/docker-entrypoint-initdb.d:ro
+  networks:
+    - barnamehsaz_network
+  healthcheck:
+    test: ['CMD-SHELL', 'pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB']
+    interval: 10s
+    timeout: 5s
+    retries: 5
+    start_period: 30s
+
+services:
+  postgres:
+    <<: *postgres
+    container_name: barnamehsaz-postgres
+    ports:
+      - "${DB_PORT:-5433}:5432"
+    environment:
+      POSTGRES_DB: ${DB_NAME:-barnamehsaz_novin_dev}
+      POSTGRES_USER: ${DB_USER:-barnamehsaz}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-change_me_local}
+
+  postgres-test:
+    <<: *postgres
+    container_name: barnamehsaz-postgres-test
+    ports:
+      - "${DB_TEST_PORT:-5434}:5432"
+    environment:
+      POSTGRES_DB: ${DB_TEST_NAME:-barnamehsaz_novin_test}
+      POSTGRES_USER: ${DB_TEST_USER:-barnamehsaz}
+      POSTGRES_PASSWORD: ${DB_TEST_PASSWORD:-change_me_local}
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  barnamehsaz_network:
+    driver: bridge
