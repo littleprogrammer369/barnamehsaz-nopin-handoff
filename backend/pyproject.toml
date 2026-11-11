@@ -1,0 +1,29 @@
+[project]
+name = "barnamehsaz-novin"
+version = "0.1.0"
+description = "برنامه‌ساز نوین — مدیریت برنامه‌ریزی، منابع و انتشار"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "sqlalchemy>=2.0.35",
+    "alembic>=1.14.0",
+    "psycopg2-binary>=2.9.9",
+    "pydantic>=2.8.0",
+    "pydantic-settings>=2.5.0",
+    "argon2-cffi>=24.0.0",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "httpx>=0.27.0",
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "sqlalchemy-utils>=0.41.2",
+    # Phase 4: OR-Tools CP-SAT global solver (07 GLOBAL_SOLVER).
+    # Exact version is pinned in requirements.lock.txt (ortools==9.15.6755);
+    # the declared floor here must stay at or below the locked version.
+    "ortools>=9.15",
+]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"

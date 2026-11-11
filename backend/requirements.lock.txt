@@ -1,0 +1,83 @@
+# requirements.lock.txt — PINNED, REPRODUCIBLE dependency set
+#
+# Generated from the project venv on:
+#   - Python 3.12+  (any venv)
+#   - 2026-11-06
+#
+# Usage:
+#   pip install -r requirements.lock.txt
+#
+# Regenerate after any intentional dependency change:
+#   .venv/bin/pip freeze > requirements.lock.txt   # then curate / sort
+#
+# NOTE: pyproject.toml and requirements.txt keep MINIMUM RANGES (>=),
+#       which are the intended *declared* floor. This lock file is the
+#       *exact* set actually in use. The two are not interchangeable:
+#       install from requirements.txt gets you a range; install from
+#       requirements.lock.txt gets you byte-for-byte reproducibility.
+#
+# COVERAGE NOTES (declared in pyproject.toml but NOT installed in venv):
+#   - uvicorn[standard]:   not needed for Phase 1 (server exercised via
+#                          fastapi TestClient). Install before Phase 2
+#                          when a real server process is launched.
+#   - pytest-asyncio:      no async tests exist yet in Phase 1; install
+#                          once an async endpoint / test is added.
+#   - python-multipart:   not needed (no multipart form endpoints yet).
+# All pins below satisfy their declared minimum floors (verified via
+# packaging.Version; see PHASE_01_FINAL_REVIEW.md §5.3/§7).
+
+absl-py==2.5.1
+alembic==1.20.1
+annotated-doc==0.0.5
+annotated-types==0.8.0
+anyio==4.16.0
+argon2-cffi==25.1.0
+argon2-cffi-bindings==26.1.0
+certifi==2026.10.23
+cffi==2.1.1
+immutabledict==4.3.1
+numpy==2.5.4
+ortools==9.15.6755
+pandas==3.1.1
+protobuf==6.33.6
+python-dateutil==4.0.0
+tzdata==2026.6
+dnspython==2.9.2
+ecdsa==0.19.2
+email-validator==2.3.0
+fastapi==0.162.0
+h11==0.16.0
+httpcore==1.0.9
+httpx==0.28.1
+idna==3.20
+iniconfig==2.3.1
+Mako==1.4.3
+MarkupSafe==3.0.4
+opentelemetry-api==1.45.2
+packaging==26.3
+passlib==1.7.4
+pluggy==1.7.0
+psycopg2-binary==2.9.13
+pyasn1==0.6.5
+pycparser==3.12
+pydantic==2.14.3
+pydantic-settings==2.16.2
+pydantic_core==2.50.4
+Pygments==2.21.0
+pytest==9.2.0
+python-dotenv==1.2.4
+python-jose==3.5.0
+rsa==4.9.1
+six==1.17.0
+SQLAlchemy==2.1.8
+SQLAlchemy-Utils==0.43.0
+starlette==1.10.0
+typing-inspection==0.4.5
+typing_extensions==4.16.0
+
+# Phase 4 solver dependency (exact OR-Tools version, 07 GLOBAL_SOLVER):
+#   ortools==9.15.6755  (transitive pins: absl-py, immutabledict,
+#   numpy, pandas, protobuf, python-dateutil, tzdata — listed above)
+# Phase 4 was added AFTER the lock file's initial generation; the pins
+# were appended here by hand on 2026-11-07 so a fresh venv install
+# can build the CP-SAT solver environment byte-for-byte.
